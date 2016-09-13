@@ -1,0 +1,16 @@
+# PHP + NGINX + MySql Container #----------------------------------
+truerev-dev:
+  image: luizcoder/laravel:latest
+  container_name: laravel-dev
+  ports:
+    - "8000:80"
+    - "33060:3306"
+  environment:
+    MYSQL_DATABASE: laravel
+    MYSQL_USER: laravel
+    MYSQL_PASSWORD: secret    
+  volumes:
+    - ./settings/nginx:/etc/nginx/sites-available
+    - ../:/var/www
+    - ./logs/nginx:/var/log/nginx
+  privileged: false
